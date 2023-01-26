@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="text-center"><h2>[[${pageTitle}]]</h2></div>
+
+    <form th:action="@{/tasks/save}" method="put" th:object="${task}" style="max-width: 700px;margin: 0 auto;">
+        <input type="hidden" th:field="*{id}">
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Marka Pojazdu:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{carMake}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Model:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{carModel}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Koszt:</label>
+                <div class="col-sm-8">
+                    <input type="number" th:field="*{cost}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Imie Właściciela:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{ownerFirstName}" class="form-control" required minlength="2" maxlength="45"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Nazwisko Właściciela:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{ownerLastName}" class="form-control" required minlength="2" maxlength="50"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Numer Kontaktowy:</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{ownerContactNr}" class="form-control" required minlength="9" maxlength="9"/>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Data rozpoczecia (DD.MM.YYYY):</label>
+                <div class="col-sm-8">
+                    <input type="text" th:field="*{startDate}" class="form-control"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-form-label col-sm-4">Mechanik :</label>
+                <div class="col-sm-8">
+                    <select th:field="*{mechanic}" class="form-control" required>
+                        <th:block th:each ="mechanic : ${mechanicList}">
+                            <option th:value="${mechanic.id}" th:text="${mechanic.firstName} +' ' +${mechanic.lastName}" />
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row" style="padding: 5px">
+                <label class="col-sm-4 col-form-label">Opis:</label>
+                <div class="col-sm-8">
+                    <textarea class="form-control" id="description" rows="5"
+                               name="description"
+                               placeholder="Opis" th:field="${task.description}"
+                               required="required"></textarea>
+                </div>
+            </div>
+            <div class="text-center" >
+                <button type="submit" class="btn btn-primary m-2">Zapisz</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()">Anuluj</button>
+                <button type="button" class="btn btn-secondary m-2" onclick="goBackToTaskList()">Powrót</button>
+            </div>
+        </div>
+
+
+    </form>
+
+</div>
+
+<script type="text/javascript">
+    function cancelForm(){
+        window.location="[[@{/tasks}]]";
+    }
+</script>
+
+<script type="text/javascript">
+    function goBackToTaskList(){
+        window.location="[[@{/tasks}]]";
+    }
+</script>
+
+</body>
+</html>

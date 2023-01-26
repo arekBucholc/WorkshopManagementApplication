@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Zarzadzaj zadaniami</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid text-center">
+  <h2 class="mt-4">Zarzadzaj zadaniami</h2>
+  <div class="m-3">
+    <a class="btn btn-primary btn-lg" th:href="@{/tasks/new}">Dodaj zadanie</a>
+  </div>
+  <div th:if="${message}" class="alert alert-success text-center">
+    [[${message}]]
+  </div>
+  <div>
+    <table class="table table-bordered">
+      <thead class="table-dark">
+      <tr>
+        <th>ID</th>
+        <th>Marka</th>
+        <th>Model</th>
+        <th>Koszt</th>
+        <th>Data Rozpoczęcia</th>
+        <th>Mechanik</th>
+        <th>Szczegóły</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <th:block th:each="task:${taskList}">
+        <tr>
+          <td>[[${task.id}]]</td>
+          <td>[[${task.carMake}]]</td>
+          <td>[[${task.carModel}]]</td>
+          <td>[[${task.cost}]]0 zł</td>
+          <td>[[${task.startDate}]]</td>
+          <td>[[${task.mechanic.getFirstName()}]] [[${task.mechanic.getLastName()}]] </td>
+          <td style="padding: 10px">
+            <a class="btn btn-success" th:href="@{'/tasks/' + ${task.id} + '/details'}">Zobacz szczegóły</a>
+          </td>
+          <td style="padding: 10px">
+            <a class="btn btn-warning" th:href="@{'/tasks/edit/' + ${task.id}}">Edytuj</a>
+            <a class="btn btn-danger" th:href="@{'/tasks/delete/' + ${task.id}}">Usuń</a>
+          </td>
+        </tr>
+
+      </th:block>
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-secondary m-2 btn-lg" onclick="goBackToHomePage()">Powrót</button>
+  </div>
+
+</div>
+<script type="text/javascript">
+  function goBackToHomePage(){
+    window.location="[[@{/}]]";
+  }
+</script>
+</body>
+</html>

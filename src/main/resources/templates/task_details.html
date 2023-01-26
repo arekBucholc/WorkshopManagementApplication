@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="text-center mt-lg-5"><h2>Zadanie o ID = [[${task.id}]]</h2></div>
+    <table class="table table-bordered mt-5 w-75 mx-auto">
+        <thead class="table-dark">
+        <tr>
+            <th colspan="2" class="text-center">Szczegóły</th>
+        </tr>
+        </thead>
+        <tr>
+            <td colspan="2" class="text-success text-center">Dane pojazdu : </td>
+        </tr>
+            <tr>
+                <td>Marka samochodu : </td>
+                <td>[[${task.carMake}]]</td>
+            </tr>
+        <tr>
+            <td style="width: 50%">Model samochodu : </td>
+            <td style="width: 50%">[[${task.carModel}]]</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-success text-center">Dane właściciela : </td>
+        </tr>
+        <tr>
+            <td>Imię Właściciela : </td>
+            <td>[[${task.ownerFirstName}]]</td>
+        </tr>
+        <tr>
+            <td>Nazwisko Właściciela : </td>
+            <td>[[${task.ownerLastName}]]</td>
+        </tr>
+        <tr>
+            <td>Numer Kontaktowy Właściciela : </td>
+            <td>[[${task.ownerContactNr}]]</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-success text-center">Informacje : </td>
+        </tr>
+        <tr>
+            <td>Koszt : </td>
+            <td>[[${task.cost}]] pln</td>
+        </tr>
+        <tr>
+            <td>Data startu : </td>
+            <td>[[${task.startDate}]]</td>
+        </tr>
+        <tr>
+            <td> Opis : </td>
+            <td>[[${task.description}]]</td>
+        </tr>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-warning" th:href="@{'/tasks/edit/' + ${task.id}}">Edytuj</a>
+        <button type="button" class="btn btn-secondary m-2" onclick="goBackToTaskList()">Powrót</button>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    function goBackToTaskList(){
+        window.location="[[@{/tasks}]]";
+    }
+</script>
+
+</body>
+</html>
