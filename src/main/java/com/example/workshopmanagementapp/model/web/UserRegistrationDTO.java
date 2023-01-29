@@ -3,14 +3,18 @@ package com.example.workshopmanagementapp.model.web;
 public class UserRegistrationDTO {
     private String firstName;
     private String lastName;
-    private String emial;
+    private String email;
     private String password;
 
-    public UserRegistrationDTO(String firstName, String lastName, String emial, String password) {
+    public UserRegistrationDTO(String firstName, String lastName, String email, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.emial = emial;
+        this.email = email;
         this.password = password;
+    }
+
+    public UserRegistrationDTO() {
+
     }
 
     public String getFirstName() {
@@ -29,12 +33,12 @@ public class UserRegistrationDTO {
         this.lastName = lastName;
     }
 
-    public String getEmial() {
-        return emial;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEmial(String emial) {
-        this.emial = emial;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
