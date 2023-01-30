@@ -35,7 +35,7 @@ public class Task {
     @Column(name = "data_rozpoczecia")
     private LocalDate startDate;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     @JoinColumn(name = "mechanic_id")
     private Mechanic mechanic;
 
