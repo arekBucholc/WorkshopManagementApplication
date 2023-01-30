@@ -34,13 +34,10 @@ public class TaskService {
 
     }
 
-    public void deleteById(Integer id) throws TaskNotFoundException, MechanicNotEmptyException {
+    public void deleteById(Integer id) throws TaskNotFoundException {
         Long count = taskRepository.countById(id);
         if (count==null || count.equals(0)){
             throw new TaskNotFoundException("Brak zadania o podanym ID");
-        }
-        if (!taskRepository.getById(id).getMechanic().equals(null)) {
-            throw new MechanicNotEmptyException("Zadanie ma przypisanego mechanika.");
         }
         taskRepository.deleteById(id);
 
