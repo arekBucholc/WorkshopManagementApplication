@@ -19,7 +19,8 @@ public class Mechanic {
     @Column(nullable = false, length = 128)
     private String lastName;
 
-    @OneToMany
+    @OneToMany(mappedBy = "id")
+    @Cascade(org.hibernate.annotations.CascadeType.DELETE)
     private List<Task> tasksList;
     public List<Task> getTasksList() {
         return tasksList;

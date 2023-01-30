@@ -81,9 +81,12 @@ public class TaskController {
         try {
             taskService.deleteById(id);
             redirectAttributes.addFlashAttribute("message","Zadanie o ID : "+id+" zostało usunięte");
-        } catch (TaskNotFoundException e) {
-
+        } catch (TaskNotFoundException | MechanicNotEmptyException e) {
+            if (e.getClass().equals(TaskNotFoundException.class)){
                 redirectAttributes.addFlashAttribute("message",e.getMessage());
+            }else {
+                redirectAttributes.addFlashAttribute("message",e.getMessage());
+            }
 
         }
         return "redirect:/tasks";
